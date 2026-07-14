@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "appId": "59b92ae6-4065-4243-8018-74872b88a69a",
+  "appDisplayName": "AIS Home Bubbles",
+  "region": "prod",
+  "environmentId": "0fd41bd3-22c7-e5ad-a591-4111de9c5b0a",
+  "description": "CRM home page with floating SharePoint user photo bubbles",
+  "buildPath": "dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "79718b0b-f13a-4498-87b1-b504c81938e4": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+      "displayName": "SharePoint",
+      "dataSources": [
+        "ph_users"
+      ],
+      "dataSets": {
+        "https://aisnow0.sharepoint.com/sites/FLOW": {
+          "dataSources": {
+            "ph_users": {
+              "tableName": "e4fd8c94-1d73-44f3-ad42-39d81bdcf849"
+            }
+          }
+        }
+      }
+    }
+  },
+  "databaseReferences": {}
+}
