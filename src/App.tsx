@@ -14,20 +14,6 @@ const CONFIG = {
   maxPages: 8, // safety cap on paging
 }
 
-/* ---------- static changelog (edit freely) ---------- */
-type Change = { tag: 'update' | 'new' | 'fix'; t: string; d: string }
-const CHANGES: Change[] = [
-  { tag: 'update', t: 'Added the ability to only view missing status on Lease Revenue Report', d: 'Jun 17' },
-  { tag: 'new', t: 'Notification and Teams message on Approval Rejection', d: 'May 28' },
-  { tag: 'new', t: 'Add report navigation which has real time reports', d: 'May 28' },
-  { tag: 'update', t: 'Added the ability to edit Lease Disposition directly on the Lease Revenue Report', d: 'May 26' },
-  { tag: 'new', t: 'Ability to close all Active and Draft Quotes in an Opportunity', d: 'May 26' },
-  { tag: 'update', t: 'Added Has Children toggle to accounts with child accounts', d: 'May 22' },
-  { tag: 'fix', t: 'Total service fixed on the funding details PDF print-out', d: 'May 22' },
-  { tag: 'new', t: 'You can now edit items from the list view in line', d: 'May 20' },
-]
-const LABELS: Record<Change['tag'], string> = { update: 'Update', new: 'New', fix: 'Fix' }
-
 const PALETTE = ['#3b6df0', '#18b6c9', '#7b5ce0', '#e0588a', '#e09a3b', '#3bbf6f', '#d65b5b', '#5b8fd6']
 
 /* ---------- helpers (ported from ais_homebubbles.html) ---------- */
@@ -134,7 +120,6 @@ function Bubble({ spec }: { spec: BubbleSpec }) {
 
 export default function App() {
   const [users, setUsers] = useState<PH_UsersRead[]>([])
-  const [changes, setChanges] = useState<Change[]>(CHANGES)
 
   useEffect(() => {
     let cancelled = false
@@ -200,42 +185,12 @@ export default function App() {
           <h1>
             Your new CRM <span className="soap">SOAP</span>
           </h1>
-          <p>Fresh new look to the CRM. Take a look around, explore the features, and try submitting an order.</p>
-          <div className="actions">
-            <button className="btn btn-primary" onClick={() => console.log('[Home] View Accounts')}>
-              View Accounts
-            </button>
-            <button className="btn btn-ghost" onClick={() => console.log('[Home] Open Guides')}>
-              Open Guides
-            </button>
-          </div>
         </section>
 
         <aside className="right">
           <div className="brand">
             <div className="ais">AIS</div>
             <div className="tag">ONE COMPANY, MANY SOLUTIONS</div>
-          </div>
-
-          <div className="changelog-head">
-            <h2>Changelog</h2>
-            <div className="add" title="Add">
-              +
-            </div>
-          </div>
-          <div className="changelog">
-            {changes.map((c, i) => (
-              <div className="change-card" key={i}>
-                <span className={`badge ${c.tag}`}>{LABELS[c.tag]}</span>
-                <div className="change-body">
-                  <div className="t">{c.t}</div>
-                  <div className="d">{c.d}</div>
-                </div>
-                <span className="x" onClick={() => setChanges((prev) => prev.filter((_, j) => j !== i))}>
-                  &times;
-                </span>
-              </div>
-            ))}
           </div>
         </aside>
       </main>
